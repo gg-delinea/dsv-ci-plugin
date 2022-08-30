@@ -1,24 +1,24 @@
-name: Tests
-
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-  workflow_dispatch:
+on: [push]
 
 jobs:
-  test:
+  hello_world_job:
     runs-on: ubuntu-latest
+    name: A job to say hello
     steps:
-
-    - name: Set up Go 1.19
-      uses: actions/setup-go@v3
+    - name: Read secrets from DSV
+      id: dsv
+      uses: mariiatuzovska/dsv-ci-plugin@v6.2
       with:
-        go-version: '1.19'
+        domain: ${{ secrets.DSV_SERVER }}
+        clientId: ${{ secrets.DSV_CLIENT_ID }}
+        clientSecret: ${{ secrets.DSV_CLIENT_SECRET }}
+        setEnv: true
+        retrieve: |
+          ${{ secrets.DSV_SECRET_PATH_ONE }} ${{ secrets.DSV_SECRET_KEY_ONE }} AS myVal1
+          ${{ secrets.DSV_SECRET_PATH_TWO }} ${{ secrets.DSV_SECRET_KEY_TWO }} AS MYVAL2
 
-    - name: Checkout
-      uses: actions/checkout@v2
+    - name: Print secret referencing ID of the step.
+      run: echo ${{ steps.dsv.outputs.myVal1 }}
 
-    - name: Run tests
-      run: go test -v .
+    - name: Print secret using environment virable (only available if `setEnv` was set to `true`)
+      run: echo ${{ env.MYVAL2 }}

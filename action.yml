@@ -3,14 +3,19 @@ description: "Delinea DevOps Secrets Vault (DSV) GitHub Actions Plugin allows yo
 
 inputs:
   domain:
+    description: "DSV Tenant"
     required: true
   clientId:
+    description: "DSV Tenant"
     required: true
   clientSecret:
+    description: "DSV Tenant"
     required: true
   setEnv:
+    description: "DSV Tenant"    
     required: true
   retrieve:
+    description: "DSV Tenant"
     required: true
 
 runs:
