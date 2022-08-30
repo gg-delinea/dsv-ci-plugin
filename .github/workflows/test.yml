@@ -15,7 +15,7 @@ jobs:
         setEnv: true
         retrieve: |
           ${{ secrets.DSV_SECRET_PATH_ONE }} ${{ secrets.DSV_SECRET_KEY_ONE }} AS myVal1
-          ${{ secrets.DSV_SECRET_PATH_TWO }} ${{ secrets.DSV_SECRET_KEY_TWO }} AS MYVAL2
+          # ${{ secrets.DSV_SECRET_PATH_TWO }} ${{ secrets.DSV_SECRET_KEY_TWO }} AS MYVAL2
 
     - name: Print secret referencing ID of the step.
       run: echo ${{ steps.dsv.outputs.myVal1 }}
