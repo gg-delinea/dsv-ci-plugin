@@ -21,4 +21,4 @@ jobs:
       run: echo ${{ steps.dsv.outputs.myVal1 }}
 
     - name: Print secret using environment virable (only available if `setEnv` was set to `true`)
-      run: echo ${{ env.MYVAL2 }} test again with vars
+      run: echo ${{ env.MYVAL2 }} test again with vars updated secret 
