@@ -1,9 +1,9 @@
 on: [push]
 
 jobs:
-  hello_world_job:
+  read_secrets_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A DSV JOB 
     steps:
     - name: Read secrets from DSV
       id: dsv
@@ -15,10 +15,10 @@ jobs:
         setEnv: true
         retrieve: |
           ${{ secrets.DSV_SECRET_PATH_ONE }} ${{ secrets.DSV_SECRET_KEY_ONE }} AS myVal1
-          # ${{ secrets.DSV_SECRET_PATH_TWO }} ${{ secrets.DSV_SECRET_KEY_TWO }} AS MYVAL2
+          ${{ secrets.DSV_SECRET_PATH_TWO }} ${{ secrets.DSV_SECRET_KEY_TWO }} AS MYVAL2
 
     - name: Print secret referencing ID of the step.
       run: echo ${{ steps.dsv.outputs.myVal1 }}
 
     - name: Print secret using environment virable (only available if `setEnv` was set to `true`)
-      run: echo ${{ env.MYVAL1 }} test again with vars updated secret 
+      run: echo ${{ env.MYVAL2 }} test again with vars updated secret 
