@@ -7,7 +7,7 @@ jobs:
     steps:
     - name: Read secrets from DSV
       id: dsv
-      uses: mariiatuzovska/dsv-ci-plugin@v1.3
+      uses: mariiatuzovska/dsv-ci-plugin:v1.3
       with:
         domain: ${{ secrets.DSV_SERVER }}
         clientId: ${{ secrets.DSV_CLIENT_ID }}
@@ -20,5 +20,5 @@ jobs:
     - name: Print secret referencing ID of the step.
       run: echo ${{ steps.dsv.outputs.myVal1 }}
 
-    - name: Print secret using environment virable (only available if `setEnv` was set to `true`)
+    - name: Print secret using environment variable (only available if `setEnv` was set to `true`)
       run: echo ${{ env.MYVAL2 }} test again with vars updated secret 
